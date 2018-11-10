@@ -57,7 +57,7 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="Nez">
-      <HintPath>..\packages\Nez.0.9.2\lib\Nez.dll</HintPath>
+      <HintPath>debug_libs\Nez.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -112,10 +112,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="debug_libs\Nez.XML" />
+    <None Include="debug_libs\Nez.dll" />
+    <None Include="debug_libs\Nez.dll.config" />
+    <None Include="debug_libs\Nez.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scenes\" />
     <Folder Include="Components\" />
+    <Folder Include="debug_libs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

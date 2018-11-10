@@ -18,8 +18,11 @@ namespace GalaxyTycoon.Desktop
 
         protected override void Initialize()
         {
+
             base.Initialize();
-            Window.AllowUserResizing = false;
+            Window.AllowUserResizing = true;
+
+           
             
             //var myScene = Scene.createWithDefaultRenderer(Color.BurlyWood);
             var myScene = new DefaultScene
