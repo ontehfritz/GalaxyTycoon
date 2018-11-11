@@ -8,48 +8,40 @@ using Nez.UI;
 
 namespace GalaxyTycoon.Scenes
 {
-    public abstract class BaseScene : Scene, IFinalRenderDelegate
+    public abstract class BaseScene : Scene
     {
-        public const int SCREEN_SPACE_RENDER_LAYER = 999;
-        public UICanvas canvas;
-
+        private UICanvas _canvas;
         private Table _table;
-        private List<Button> _sceneButtons = new List<Button>();
-        private ScreenSpaceRenderer _screenSpaceRenderer;
+        protected const int ScreenSpaceRenderLayer = 999;
 
         public BaseScene()
         {
-            // setup one renderer in screen space for the UI and then (optionally) another renderer to render everything else
+            _canvas = new UICanvas();
+            _canvas.isFullScreen = false;
+           
+            addRenderer(new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer));
+            addRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer));
 
-            addRenderer(new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER));
-            addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
+            var uiCanvas = createEntity("ui-canvas").addComponent(_canvas);
+            _table = new Table();
+            _table.setSize(5000, 195);
+            _table.setDebug(true);
+            _table.setColor(Color.Gray);
+            _table.setFillParent(true).top().padTop(700);
+            _table.row().setPadTop(10);
 
-            // create our canvas and put it on the screen space render layer
-            canvas = createEntity("ui").addComponent(new UICanvas());
-            canvas.isFullScreen = true;
-            canvas.renderLayer = SCREEN_SPACE_RENDER_LAYER;
-        }
+            for (int i = 0; i < 10; i++)
+            {
+                var playButton = _table.add(
+                    new TextButton("click",
+                                   Skin.createDefaultSkin()))
+                                       .setMinHeight(50)
+                                       .setMinWidth(50)
+                                       .getElement<TextButton>();
+            }
 
-        public Scene scene { get; set; }
-        public void handleFinalRender(Color letterboxColor, 
-                                      RenderTarget2D source, 
-                                      Rectangle finalRenderDestinationRect, 
-                                      SamplerState samplerState)
-        {
-            Core.graphicsDevice.SetRenderTarget(null);
-            Core.graphicsDevice.Clear(letterboxColor);
-            Graphics.instance.batcher.begin(BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null);
-            Graphics.instance.batcher.draw(source, finalRenderDestinationRect, Color.White);
-            Graphics.instance.batcher.end();
-
-           // _screenSpaceRenderer.render(scene);
-        }
-
-        public void onAddedToScene(){ }
-
-        public void onSceneBackBufferSizeChanged(int newWidth, int newHeight)
-        {
-           // _screenSpaceRenderer.onSceneBackBufferSizeChanged(newWidth, newHeight);
+            uiCanvas.stage.addElement(_table);
+            uiCanvas.renderLayer = ScreenSpaceRenderLayer;
         }
     }
 }

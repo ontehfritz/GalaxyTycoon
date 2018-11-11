@@ -13,7 +13,7 @@ namespace GalaxyTycoon.Components
         {
             entity.setPosition(Input.scaledMousePosition);
 
-            if(Input.rightMouseButtonDown && Input.leftMouseButtonDown)
+            if(Input.middleMouseButtonDown)
             {
                 if(Input.mousePositionDelta.X < 0){
                     _move = _cameraMoveSpeed * -1;
