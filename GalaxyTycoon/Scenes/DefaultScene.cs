@@ -11,6 +11,7 @@ namespace GalaxyTycoon.Scenes
 {
     public class DefaultScene : BaseScene
     {
+
         public DefaultScene()
         {
 
@@ -27,8 +28,7 @@ namespace GalaxyTycoon.Scenes
             beeEntity.addComponent(new Sprite(texture));
             beeEntity.position = new Vector2(650, 400);
             var mouseFollowEntity = createEntity("mouse");
-            mouseFollowEntity.addComponent(new MouseEntity());
-           
+            mouseFollowEntity.addComponent(new MouseEntity()); 
         }
     }
 }
