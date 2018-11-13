@@ -9,6 +9,7 @@ namespace GalaxyTycoon.Components
     {
         private const int _cameraMoveSpeed = 10;
         private int _move; 
+
         public void update()
         {
             entity.setPosition(Input.scaledMousePosition);
@@ -23,10 +24,17 @@ namespace GalaxyTycoon.Components
                 {
                     _move = _cameraMoveSpeed;
                 }
-
-                entity.scene.camera.position +=
-                    new Vector2(_move, 0);
             }
+            else if(Input.isKeyDown(Keys.Right)){
+                _move = _cameraMoveSpeed * -1; ;
+            }
+            else if(Input.isKeyDown(Keys.Left)){
+                _move = _cameraMoveSpeed;
+            }
+
+            entity.scene.camera.position +=
+                    new Vector2(_move, 0);
+            _move = 0;
         }
     }
 }
