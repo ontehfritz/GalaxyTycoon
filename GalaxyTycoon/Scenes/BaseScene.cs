@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GalaxyTycoon.Components;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.UI;
 
@@ -12,25 +8,24 @@ namespace GalaxyTycoon.Scenes
     {
         private UICanvas _canvas;
         private Table _table;
-        private Dictionary<string, ImageButton> _buttons;
         protected const int ScreenSpaceRenderLayer = 999;
 
 
         public BaseScene()
         {
             _canvas = new UICanvas();
-            _canvas.isFullScreen = true;
+            //_canvas.isFullScreen = true;
            
-            addRenderer(new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer));
+            addRenderer(new ScreenSpaceRenderer(10, ScreenSpaceRenderLayer));
             addRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer));
 
             var uiCanvas = createEntity("ui-canvas").addComponent(_canvas);
             _table = new Table();
-            _table.setWidth(1280);
+
             _table.setDebug(true);
             _table.setColor(Color.Gray);
-            _table.setFillParent(true).top().padTop(700);
-            _table.row().setPadTop(10);
+            _table.setFillParent(true).top().padTop(425);
+            _table.row();
 
             buildUi();
 
@@ -40,7 +35,7 @@ namespace GalaxyTycoon.Scenes
 
         private void buildUi()
         {
-            _table.add(new TextButton("clear",
+            _table.add(new TextButton("Scraper",
                                        Skin.createDefaultSkin()))
                                            .setMinHeight(50)
                                            .setMinWidth(50)

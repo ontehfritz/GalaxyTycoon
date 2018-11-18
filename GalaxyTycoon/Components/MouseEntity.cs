@@ -7,11 +7,12 @@ namespace GalaxyTycoon.Components
 {
     public class MouseEntity : Component, IUpdatable
     {
-        private const int _cameraMoveSpeed = 10;
+        private const int _cameraMoveSpeed = 2;
         private int _move; 
 
         public void update()
         {
+            //_move = 0;
             entity.setPosition(Input.scaledMousePosition);
 
             if(Input.middleMouseButtonDown)

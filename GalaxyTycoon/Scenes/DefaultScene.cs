@@ -6,6 +6,7 @@ using Nez;
 using Nez.Console;
 using Nez.Pipeline;
 using Nez.Sprites;
+using Nez.Tiled;
 
 namespace GalaxyTycoon.Scenes
 {
@@ -19,16 +20,30 @@ namespace GalaxyTycoon.Scenes
         public override void initialize()
         {
             base.initialize();
-            //setDesignResolution(137 * 9, 89 * 9,
-            //                   Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
-            //Screen.setSize(137 * 9, 89 * 9);
+            setDesignResolution(640, 480, Scene.SceneResolutionPolicy.ExactFit);
+            Screen.setSize(1920, 1080);
 
-            var texture = this.content.Load<Texture2D>("Bee");
-            var beeEntity = createEntity("bee");
-            beeEntity.addComponent(new Sprite(texture));
-            beeEntity.position = new Vector2(650, 400);
+            var tiledMap = content.Load<TiledMap>("Maps/test");
+            var tiledEntity = createEntity("tiled-map-entity");
+            //var objectLayer = tiledMap.getObjectGroup("objects");
+            //var spawnObject = objectLayer.objectWithName("spawn");
+            var tiledMapComponent = tiledEntity.addComponent(new TiledMapComponent(tiledMap));
+            //tiledMapComponent.setLayersToRender(new string[] { "Tile Layer 1" });
+            // render below/behind everything else. our player is at 0 and projectile is at 1.
+            //tiledMapComponent.renderLayer = 999;
+            //tiledEntity.position = new Vector2(400,600);
+            tiledEntity.addComponent(new CameraBounds(
+                new Vector2(tiledMap.tileWidth, 
+                            tiledMap.tileWidth), 
+                new Vector2(tiledMap.tileWidth * (tiledMap.width - 1), 
+                            tiledMap.tileWidth * (tiledMap.height - 1))));
+            //var texture = this.content.Load<Texture2D>("Bee");
+            //var beeEntity = createEntity("bee");
+            //beeEntity.addComponent(new Sprite(texture));
+            //beeEntity.position = new Vector2(650, 400);
             var mouseFollowEntity = createEntity("mouse");
-            mouseFollowEntity.addComponent(new MouseEntity()); 
+            mouseFollowEntity.addComponent(new MouseEntity());
+            //camera.entity.addComponent(new FollowCamera(mouseFollowEntity));
         }
     }
 }

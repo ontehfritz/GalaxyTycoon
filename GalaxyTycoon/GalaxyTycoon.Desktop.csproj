@@ -49,6 +49,7 @@
     <Compile Include="Scenes\DefaultScene.cs" />
     <Compile Include="Components\MouseEntity.cs" />
     <Compile Include="Components\CameraBounds.cs" />
+    <Compile Include="Entities\Tools\LandScraper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -116,11 +117,16 @@
     <None Include="debug_libs\Nez.dll" />
     <None Include="debug_libs\Nez.dll.config" />
     <None Include="debug_libs\Nez.pdb" />
+    <None Include="Content\Maps\test.tmx" />
+    <None Include="Content\Maps\grass.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scenes\" />
     <Folder Include="Components\" />
     <Folder Include="debug_libs\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\Tools\" />
+    <Folder Include="Content\Maps\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
