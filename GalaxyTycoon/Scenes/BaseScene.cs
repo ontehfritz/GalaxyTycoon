@@ -9,7 +9,7 @@ namespace GalaxyTycoon.Scenes
         private UICanvas _canvas;
         private Table _table;
         protected const int ScreenSpaceRenderLayer = 999;
-
+        protected TextButton _scraperButton;
 
         public BaseScene()
         {
@@ -35,11 +35,13 @@ namespace GalaxyTycoon.Scenes
 
         private void buildUi()
         {
-            _table.add(new TextButton("Scraper",
-                                       Skin.createDefaultSkin()))
-                                           .setMinHeight(50)
-                                           .setMinWidth(50)
-                                           .getElement<TextButton>();
+            _scraperButton = new TextButton("Scraper",
+                                               Skin.createDefaultSkin());
+            _table.add(_scraperButton)
+                    .setMinHeight(50)
+                    .setMinWidth(50)
+                    .getElement<TextButton>();
+
             _table.add(new TextButton("create",
                                        Skin.createDefaultSkin()))
                                            .setMinHeight(50)

@@ -119,6 +119,7 @@
     <None Include="debug_libs\Nez.pdb" />
     <None Include="Content\Maps\test.tmx" />
     <None Include="Content\Maps\grass.png" />
+    <None Include="Content\sprites\landscraper.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scenes\" />

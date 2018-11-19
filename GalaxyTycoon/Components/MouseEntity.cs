@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
@@ -27,10 +26,10 @@ namespace GalaxyTycoon.Components
                 }
             }
             else if(Input.isKeyDown(Keys.Right)){
-                _move = _cameraMoveSpeed * -1; ;
+                _move = _cameraMoveSpeed;
             }
             else if(Input.isKeyDown(Keys.Left)){
-                _move = _cameraMoveSpeed;
+                _move = _cameraMoveSpeed * -1;
             }
 
             entity.scene.camera.position +=

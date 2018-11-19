@@ -1,10 +1,7 @@
-﻿using System;
-using GalaxyTycoon.Components;
+﻿using GalaxyTycoon.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
-using Nez.Console;
-using Nez.Pipeline;
 using Nez.Sprites;
 using Nez.Tiled;
 
@@ -13,10 +10,11 @@ namespace GalaxyTycoon.Scenes
     public class DefaultScene : BaseScene
     {
 
-        public DefaultScene()
+        public DefaultScene() : base()
         {
 
         }
+
         public override void initialize()
         {
             base.initialize();
@@ -25,13 +23,7 @@ namespace GalaxyTycoon.Scenes
 
             var tiledMap = content.Load<TiledMap>("Maps/test");
             var tiledEntity = createEntity("tiled-map-entity");
-            //var objectLayer = tiledMap.getObjectGroup("objects");
-            //var spawnObject = objectLayer.objectWithName("spawn");
             var tiledMapComponent = tiledEntity.addComponent(new TiledMapComponent(tiledMap));
-            //tiledMapComponent.setLayersToRender(new string[] { "Tile Layer 1" });
-            // render below/behind everything else. our player is at 0 and projectile is at 1.
-            //tiledMapComponent.renderLayer = 999;
-            //tiledEntity.position = new Vector2(400,600);
             tiledEntity.addComponent(new CameraBounds(
                 new Vector2(tiledMap.tileWidth, 
                             tiledMap.tileWidth), 
@@ -43,6 +35,16 @@ namespace GalaxyTycoon.Scenes
             //beeEntity.position = new Vector2(650, 400);
             var mouseFollowEntity = createEntity("mouse");
             mouseFollowEntity.addComponent(new MouseEntity());
+
+            var texture = this.content.Load<Texture2D>("sprites/landscraper");
+            
+            var scraperEntity = createEntity("scraper");
+            scraperEntity.addComponent(new Sprite(texture));
+
+            scraperEntity.position = new Vector2(100, 100);
+
+
+
             //camera.entity.addComponent(new FollowCamera(mouseFollowEntity));
         }
     }
